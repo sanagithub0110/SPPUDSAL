@@ -44,10 +44,10 @@ def intersection(A, B, C):
 
 def union(A, B, C):
     for i in range(len(A)):
-        C.append(A[i])
+        if search_set(C, A[i]) == 0:
+            C.append(A[i])
     for i in range(len(B)):
-        flag = search_set(A, B[i])
-        if flag == 0:
+        if search_set(C, B[i]) == 0:
             C.append(B[i])
 
 def difference(A, B, C):
