@@ -145,6 +145,43 @@ def delete_client_chain():
             return
     print("Client not found.")
 
+# --- CHAINING WITH REPLACEMENT METHODS ---
+def add_client_chain_replacement():
+    client_id = int(input("Client ID: "))
+    name = input("Client Name: ")
+    telephone = input("Telephone Number: ")
+    client = [client_id, name, telephone]
+    index = client_id % size
+    client_list_chain[index].insert(0, client)  # Insert at beginning (head)
+    print("Client added at index (chain with replacement):", index)
+
+
+def search_client_chain_replacement():
+    client_id = int(input("Client ID to search: "))
+    index = client_id % size
+    comparisons = 0
+
+    for client in client_list_chain[index]:
+        comparisons += 1
+        if client[0] == client_id:
+            print("Client found at index (chain with replacement):", index, client)
+            print("Comparisons:", comparisons)
+            return
+    print("Client not found.")
+    print("Comparisons:", comparisons)
+
+
+def delete_client_chain_replacement():
+    client_id = int(input("Client ID to delete: "))
+    index = client_id % size
+    for i, client in enumerate(client_list_chain[index]):
+        if client[0] == client_id:
+            del client_list_chain[index][i]
+            print("Client deleted from index (chain with replacement):", index)
+            return
+    print("Client not found.")
+
+
 # --- MAIN MENU ---
 def Main():
     while True:
@@ -159,6 +196,10 @@ def Main():
         print("8. Search Client (Chaining)")
         print("9. Delete Client (Chaining)")
         print("10. Exit")
+        print("11. Add Client (Chaining with Replacement)")
+        print("12. Search Client (Chaining with Replacement)")
+        print("13. Delete Client (Chaining with Replacement)")
+
         choice = int(input("Enter your choice: "))
 
         if choice == 1:
@@ -182,6 +223,13 @@ def Main():
         elif choice == 10:
             print("Exiting Program.")
             break
+        elif choice == 11:
+            add_client_chain_replacement()
+        elif choice == 12:
+            search_client_chain_replacement()
+        elif choice == 13:
+            delete_client_chain_replacement()
+
         else:
             print("Invalid choice. Try again.")
 
